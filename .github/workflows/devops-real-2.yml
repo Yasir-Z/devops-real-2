@@ -32,5 +32,15 @@ jobs:
     - name: Unit test
       run: pytest test_app.py
 
+    - name: Dockerhub login
+      run: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Build Docker image 
+      run: docker build -t shepherd777/devops-real-2:latest .
+
+    - name: Push image to dockerhub
+      run: docker push shepherd777/devops-real-2:latest
 
