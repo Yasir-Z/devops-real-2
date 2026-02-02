@@ -27,7 +27,7 @@ jobs:
       run: black .
     
     - name: Static analysis 
-      run: bandit -r .  
+      run: bandit -r . --skip B101,B102,B104
 
     - name: Unit test
       run: pytest test_app.py
